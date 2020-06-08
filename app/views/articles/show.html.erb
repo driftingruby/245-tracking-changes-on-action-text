@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p><%= @article.content %></p>
+
+<h2>
+  Versions
+  <%= @article.versions.size %>
+</h2>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Previous Content</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @article.versions.order(id: :desc).each do |version| %>
+      <tr>
+        <td><%= version.id %></td>
+        <td><%= version.content %></td>
+        <td><%= version.user.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
